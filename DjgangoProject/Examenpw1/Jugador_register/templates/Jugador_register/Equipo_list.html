@@ -1,0 +1,42 @@
+{%extends "Jugador_register/base.html"%}
+
+{% block content%}
+<p> Lista de Equipos <form action="{% url 'menu' %}" method="POST" class = "d-inline">
+    {% csrf_token %}
+    
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Nombre</td>
+            <td>Ciudad</td>
+            <td>
+                <a href="{% url 'Equipo_insert' %}" class="btn btn-outline-success">
+                    <i class="fas fa-plus"></i> Add New Team
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for team in Equipo_list %}
+        <tr>
+            <td>{{team.team|add:" de "}}</td>
+            <td>{{team.city}}</td>
+            <td>
+                <a href="{% url 'Equipo_update' team.id %}" class="btn text secondary px-0" >
+                    <i class="far fa-edit fat-lg"></i>
+                </a>
+                <form action="{% url 'Equipo_delete' team.id %}" method="POST" class = "d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">
+                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                    </button>
+                </form>                
+            </td>
+        </tr>
+        {% endfor %}
+        <div class="col-md-10">
+            <a href="{% url 'menu' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fas fa-stream"></i> Volver al Menu
+            </a>
+    </tbody>
+    {% endblock content %}

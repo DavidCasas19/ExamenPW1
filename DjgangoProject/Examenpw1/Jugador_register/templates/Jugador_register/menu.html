@@ -1,0 +1,13 @@
+{%extends "Jugador_register/base.html"%}
+{%block content%}
+<p> Menu </p>
+<ul class="list-group">
+    <li class="list-group-item">
+        <a href="{% url 'Jugador_list'%}">Lista Jugadores</a>
+    </li>
+    <li class="list-group-item">
+        <a href="{% url 'Equipo_list'%}">Lista Equipos</a>
+    </li>
+    <li class="list-group-item">
+        <a href="{% url 'Estadio_list'%}">Lista Estadios </a>
+{% endblock content %}
